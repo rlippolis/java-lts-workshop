@@ -1,0 +1,16 @@
+rootProject.name = 'java-lts-workshop'
+include ':exercises'
+include ':module-demo:division'
+include ':module-demo:recursive-substraction-division'
+include ':module-demo:simple-division'
+include ':module-demo:client'
+include ':module-demo'
+include ':demos'
+
+project(':exercises').projectDir = "$rootDir/exercises" as File
+project(':module-demo:division').projectDir = "$rootDir/module-demo/division" as File
+project(':module-demo:recursive-substraction-division').projectDir = "$rootDir/module-demo/recursive-substraction-division" as File
+project(':module-demo:simple-division').projectDir = "$rootDir/module-demo/simple-division" as File
+project(':module-demo:client').projectDir = "$rootDir/module-demo/client" as File
+project(':module-demo').projectDir = "$rootDir/module-demo" as File
+project(':demos').projectDir = "$rootDir/demos" as File

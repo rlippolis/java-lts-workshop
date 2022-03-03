@@ -1,0 +1,5 @@
+
+description = ''
+dependencies {
+  implementation project(':module-demo:division')
+}

@@ -1,0 +1,6 @@
+
+description = ''
+dependencies {
+  implementation project(':module-demo:division')
+  runtimeOnly project(':module-demo:recursive-substraction-division')
+}
