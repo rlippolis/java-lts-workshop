@@ -19,23 +19,23 @@ import java.util.stream.Stream;
 public class LocalVariableTypeInference {
 
     public static void main(String... args) {
-        String helloText = "Hello";
-        String worldText = "world!";
+        var helloText = "Hello";
+        var worldText = "world!";
 
         System.out.println(helloText + " " + worldText);
 
-        LocalVariableTypeInference localVariableTypeInference = new LocalVariableTypeInference();
+        var localVariableTypeInference = new LocalVariableTypeInference();
 
         System.out.println("This class is called: " + localVariableTypeInference.getClass().getSimpleName());
 
-        Stream<Integer> evenNumbers = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-                .filter((Integer x) -> x % 2 == 0);
+        var evenNumbers = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+                .filter((var x) -> x % 2 == 0); // `var` not really needed here, but it's allowed
 
         System.out.println("Even numbers: " + evenNumbers.map(String::valueOf).collect(Collectors.joining(", ", "[", "]")));
 
-        long totalWordSize = Stream.of("aap", null, "noot", null, "mies")
+        var totalWordSize = Stream.of("aap", null, "noot", null, "mies")
                 .filter(Objects::nonNull)
-                .mapToInt((String s) -> s.length())
+                .mapToInt((var s) -> s.length()) // `var` not really needed here, but it's allowed
                 .sum();
 
         System.out.println("Total word size: " + totalWordSize);

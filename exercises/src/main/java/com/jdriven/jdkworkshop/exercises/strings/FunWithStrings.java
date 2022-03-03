@@ -1,7 +1,5 @@
 package com.jdriven.jdkworkshop.exercises.strings;
 
-import com.jdriven.jdkworkshop.util.TODO;
-
 /**
  * More fun with some new String API methods since Java 11.
  */
@@ -12,7 +10,10 @@ public class FunWithStrings {
      * return the average line size.
      */
     public double getAverageLineSize(String text) {
-        return TODO.implementMe();
+        return text.lines()
+                .mapToInt(String::length)
+                .average()
+                .orElse(0);
     }
 
     /**
@@ -20,6 +21,6 @@ public class FunWithStrings {
      * Use this to implement this method.
      */
     public String repeatMe(String text, int count) {
-        return TODO.implementMe();
+        return text.repeat(count);
     }
 }

@@ -8,18 +8,23 @@ public class TypeScriptService {
     Use one of those fancy text blocks to make the type script readable
      */
     public String getTypeScript() {
-        return "                class Person {\n" +
-                "                    private name: string;\n" +
-                "                    private age: number;\n" +
-                "                    private salary: number;\n\n" +
-                "                    constructor(name: string, age: number, salary: number) {\n" +
-                "                        this.name = name;\n" +
-                "                        this.age = age;\n" +
-                "                        this.salary = salary;\n" +
-                "                    }\n" +
-                "                    toString(): string {\n" +
-                "                        return `${this.name} (${this.age}) (${this.salary})`; // As of version 1.4\n" +
-                "                    }\n" +
-                "                }";
+        return
+                """
+                class Person {
+                    private name: string;
+                    private age: number;
+                    private salary: number;
+
+                    constructor(name: string, age: number, salary: number) {
+                        this.name = name;
+                        this.age = age;
+                        this.salary = salary;
+                    }
+
+                    toString(): string {
+                        return `${this.name} (${this.age}) (${this.salary})`; // As of version 1.4
+                    }
+                }
+                """;
     }
 }

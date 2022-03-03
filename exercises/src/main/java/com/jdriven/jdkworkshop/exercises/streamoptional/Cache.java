@@ -11,9 +11,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-
-import com.jdriven.jdkworkshop.util.TODO;
-
 /**
  * Basic cache implementation (not thread safe!) consisting of 2 levels: an in-memory cache and a disk cache.
  * If an entry is put into the cache, the memory cache is used first. If the memory cache is full,
@@ -30,7 +27,7 @@ public class Cache<K, V> {
      * is still no entry, the method should return an empty Optional.
      */
     public Optional<V> find(K key) {
-        return TODO.implementMe();
+        return memoryCache.find(key).or(() -> diskCache.find(key));
     }
 
     /**
@@ -41,7 +38,9 @@ public class Cache<K, V> {
      *      and {@link Stream#flatMap(Function)} can be used to flatten a Stream of Streams.
      */
     public Stream<V> find(K... keys) {
-        return TODO.implementMe();
+        return Arrays.stream(keys)
+                .map(this::find)
+                .flatMap(Optional::stream);
     }
 
     /**
@@ -51,7 +50,10 @@ public class Cache<K, V> {
      * - If the cache does not contain an entry for this key, print "No entry found!"
      */
     public void logEntry(K key) {
-        TODO.implementMe();
+        find(key).ifPresentOrElse(
+                v -> System.out.println("Value: " + v),
+                () -> System.out.println("No entry found!")
+        );
     }
 
     // ----------------------------------------------------------------------------------------------------

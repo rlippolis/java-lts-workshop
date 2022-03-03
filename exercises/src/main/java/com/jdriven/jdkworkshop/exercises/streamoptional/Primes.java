@@ -4,9 +4,6 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
-
-import com.jdriven.jdkworkshop.util.TODO;
-
 public class Primes {
 
     /**
@@ -15,7 +12,8 @@ public class Primes {
      * To check whether an integer is a prime, use the supplied {@link Primes#isPrime(int)} method.
      */
     public Stream<Integer> getPrimes() {
-        return TODO.implementMe();
+        return Stream.iterate(2, x -> x + 1)
+                .filter(this::isPrime);
     }
 
     /**
@@ -23,7 +21,8 @@ public class Primes {
      * method, to generate a Stream of prime numbers up until the supplied maximum number (inclusive).
      */
     public Stream<Integer> getPrimesUpUntil(int max) {
-        return TODO.implementMe();
+        return getPrimes()
+                .takeWhile(x -> x <= max);
     }
 
     /**
@@ -31,7 +30,8 @@ public class Primes {
      * method, to generate a Stream of prime numbers starting from the supplied minimum number (inclusive).
      */
     public Stream<Integer> getPrimesStartingFrom(int min) {
-        return TODO.implementMe();
+        return getPrimes()
+                .dropWhile(x -> x < min);
     }
 
     // ------------------------------------------------------------------------------------

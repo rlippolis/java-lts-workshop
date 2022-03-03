@@ -1,11 +1,9 @@
 package com.jdriven.jdkworkshop.exercises.stackwalking;
 
+import java.lang.StackWalker.Option;
 import java.lang.StackWalker.StackFrame;
 import java.util.function.Function;
 import java.util.stream.Stream;
-
-
-import com.jdriven.jdkworkshop.util.TODO;
 
 /**
  * Java uses the concept of a call stack to keep track of the flow of methods called in a specific thread.
@@ -41,7 +39,12 @@ public class WalkingTheStack {
      * the name of the calling method as a {@link String}.
      */
     public String whichMethodIsCallingMe() {
-        return TODO.implementMe();
+        return StackWalker.getInstance().walk(
+                stackFrameStream -> stackFrameStream
+                        .skip(1)
+                        .findFirst()
+                        .map(StackFrame::getMethodName)
+                        .orElse(null));
     }
 
     /**
@@ -55,7 +58,7 @@ public class WalkingTheStack {
      * Otherwise an UnsupportedOperationException will be thrown.
      */
     public Class<?> whichClassIsCallingMe() {
-        return TODO.implementMe();
+        return StackWalker.getInstance(Option.RETAIN_CLASS_REFERENCE).getCallerClass();
     }
 
     /**
@@ -63,6 +66,10 @@ public class WalkingTheStack {
      * (all stack elements which have a package name starting with <code>com.jdriven.jdkworkshop</code>).
      */
     public long determineApplicationStackSize() {
-        return TODO.implementMe();
+        return StackWalker.getInstance().walk(
+                stackFrameStream -> stackFrameStream
+                        .filter(stackFrame -> stackFrame.getClassName().startsWith("com.jdriven.jdkworkshop"))
+                        .count()
+        );
     }
 }
